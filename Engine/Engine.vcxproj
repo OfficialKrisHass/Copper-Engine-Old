@@ -91,7 +91,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Entry.cpp" />
+    <ClCompile Include="src\Utilities\Log.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Copper.h" />
+    <ClInclude Include="src\Core\Application.h" />
+    <ClInclude Include="src\Utilities\Log.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

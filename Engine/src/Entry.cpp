@@ -5,13 +5,26 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
-#include <iostream>
+#include "Copper.h"
 
-int main() {
+//main function to Test if the Project was compiled correctly
+/*int main() {
 
 	std::cout << "Hello, World!" << std::endl;
 	std::cin.get();
 
+	return 0;
+
+}*/
+
+//Function that Launches the Application, The Main main Function.
+int main() {
+
+	Copper::Application app;
+
+	app.Initialize();
+
+	std::cin.get();
 	return 0;
 
 }
