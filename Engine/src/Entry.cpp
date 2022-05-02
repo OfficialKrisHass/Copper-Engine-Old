@@ -23,6 +23,8 @@ int main() {
 	Copper::Application app;
 
 	app.Initialize();
+	app.Run();
+	app.Shutdown();
 
 	std::cin.get();
 	return 0;

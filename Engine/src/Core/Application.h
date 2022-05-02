@@ -12,13 +12,15 @@
 
 #pragma once
 
+#include "Utilities/Log.h"
+
 namespace Copper {
 
 	class Application {
 
 	public:
 		void Initialize();
-		void Start();
+		void Run();
 		void Shutdown();
 
 	private:

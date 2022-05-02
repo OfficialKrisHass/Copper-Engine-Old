@@ -12,6 +12,22 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
+
+#ifdef CU_DEBUG
+
+	#include "spdlog/spdlog.h"
+	#include "spdlog/fmt/ostr.h"
+
+#else
+
+	namespace spdlog {
+
+		class logger;
+
+	}
+
+#endif
 
 namespace Copper {
 
@@ -19,12 +35,44 @@ namespace Copper {
 
 	#ifdef CU_ENGINE
 
-		#define Log(...)		std::cout << "Normal:   " << __VA_ARGS__ << std::endl;
-		#define LogWarn(...)	std::cout << "Warning:  " << __VA_ARGS__ << std::endl;
-		#define LogError(...)	std::cout << "Error:   " << __VA_ARGS__ << std::endl;
+		#define Log(...)		Copper::Logger::GetLogger()->trace(__VA_ARGS__)
+		#define LogWarn(...)	Copper::Logger::GetLogger()->warn(__VA_ARGS__)
+		#define LogError(...)	Copper::Logger::GetLogger()->error(__VA_ARGS__)
+
+	#endif
+
+#elif CU_RELEASE
+
+	#ifdef CU_ENGINE
+
+		#define Log(...)
+		#define LogWarn(...)
+		#define LogError(...)
+
+	#endif
+
+#else
+
+	#ifdef CU_ENGINE
+
+		#define Log(...)
+		#define LogWarn(...)
+		#define LogError(...)
 
 	#endif
 
 #endif
+
+	class Logger {
+
+	public:
+		static void Initialize();
+
+		inline static std::shared_ptr<spdlog::logger>& GetLogger() { return consoleLogger; }
+
+	private:
+		static std::shared_ptr<spdlog::logger> consoleLogger;
+
+	};
 
 }

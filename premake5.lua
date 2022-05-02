@@ -22,7 +22,8 @@ project "Engine"
 
     includedirs {
 
-        "%{prj.name}/src"
+        "%{prj.name}/src",
+        "%{prj.name}/lib"
 
     }
 

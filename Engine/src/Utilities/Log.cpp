@@ -6,3 +6,28 @@
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
 #include "Log.h"
+
+#ifdef CU_DEBUG
+
+#include "spdlog/sinks/stdout_color_sinks.h"
+
+#endif
+
+namespace Copper {
+
+	std::shared_ptr<spdlog::logger> Logger::consoleLogger;
+
+	void Logger::Initialize() {
+
+#ifdef CU_DEBUG
+
+		spdlog::set_pattern("%^[%T] %n: %v%$");
+
+		consoleLogger = spdlog::stdout_color_mt("Logger");
+		consoleLogger->set_level(spdlog::level::trace);
+
+#endif
+
+	}
+
+}
