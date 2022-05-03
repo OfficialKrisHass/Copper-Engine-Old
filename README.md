@@ -4,7 +4,7 @@ Copper Engine is a primitive Game Engine Developed by Chris Husky.
 Copper Engine Design Document: https://docs.google.com/document/d/1h_l3XcwuL_V9ATmodBqnZHSiIaWdZlpnKkB__3bXMx0/edit?usp=sharing
 
 ## How To Build
-# Windows
+### Windows
 1. Download Visual Studio 2022.
 You can skip this step if you already have Visual studio 2022 instaless. Go on the https://visualstudio.microsoft.com website and choose the 'Visual Studio' option and select which type you want (Community,
 Professional or Enterprise). a 'VisualStudioSetup.exe' file will be downloaded. Open the file. You will be most likely prompted to allow the file to make changes to your OS, press Yes. After that it will open
@@ -28,8 +28,8 @@ You have multiple ways of doing this. At the Current time you can right click on
 take from 5 to 10 seconds to build, After this you can open the Root directory and open the new 'Build' Folder there you will have a Intermediate Folder (you can ignore this) and then a folder 'windows-x86_64-Debug'.
 Open the 'windows-x86_64-Debug' folder and then the 'Engine' Folder, there you will have a 'Engine.exe' file, open that file.
 
-# Linux
+### Linux
 Copper Engine Currently doesn't support Linux
 
-# Mac
+### Mac
 Copper Engine Currently doesn't support Mac.
