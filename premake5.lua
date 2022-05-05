@@ -5,6 +5,8 @@ workspace "Copper-Engine"
 
 outputDir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
+include "Engine/lib/GLFW"
+
 project "Engine"
     location "Engine"
     kind "ConsoleApp"
@@ -23,7 +25,15 @@ project "Engine"
     includedirs {
 
         "%{prj.name}/src",
-        "%{prj.name}/lib"
+        "%{prj.name}/lib/spdlog",
+        "%{prj.name}/lib/GLFW/include"
+
+    }
+
+    links {
+
+        "GLFW",
+        "opengl32.lib"
 
     }
 

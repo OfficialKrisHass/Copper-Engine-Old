@@ -10,8 +10,17 @@
     <Filter Include="Copper\Debug">
       <UniqueIdentifier>{24D0A9A6-1033-394B-B9B8-7101A5FA04CE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Copper\Events">
+      <UniqueIdentifier>{52276E7F-BEE7-E9B5-8722-3333F3A12E92}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Copper\Launch">
       <UniqueIdentifier>{F8044F8E-64C5-CAC4-2D00-1442997F0FA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,13 +31,27 @@
     <ClInclude Include="src\Copper\Core\Core.h">
       <Filter>Copper\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Copper\Core\Window.h">
+      <Filter>Copper\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Copper\Debug\Log.h">
       <Filter>Copper\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="src\Copper\Events\Event.h" />
-    <ClInclude Include="src\Copper\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Copper\Events\MouseEvent.h" />
-    <ClInclude Include="src\Copper\Events\KeyEvent.h" />
+    <ClInclude Include="src\Copper\Events\ApplicationEvent.h">
+      <Filter>Copper\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Events\Event.h">
+      <Filter>Copper\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Events\KeyEvent.h">
+      <Filter>Copper\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Events\MouseEvent.h">
+      <Filter>Copper\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Copper\Core\Application.cpp">
@@ -39,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="src\Copper\Launch\Entry.cpp">
       <Filter>Copper\Launch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

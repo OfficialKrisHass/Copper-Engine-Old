@@ -13,6 +13,8 @@
 #pragma once
 
 #include "Copper/Core/Core.h"
+#include "Copper/Core/Window.h"
+
 #include "Copper/Debug/Log.h"
 
 #include "Copper/Events/Event.h"
@@ -26,11 +28,19 @@ namespace Copper {
 
 	public:
 		void Initialize();
+
+		void OnEvent(Event& e);
 		void Run();
+
 		void Shutdown();
 
 	private:
 		bool running = true;
+		std::unique_ptr<Window> window;
+
+		EventDispatcher dispatcher;
+
+		bool OnWindowClose(Event& e);
 
 	};
 

@@ -13,6 +13,7 @@
 #pragma once
 
 #include <iostream>
+#include <functional>
 #include <sstream>
 
 #include "Copper/Core/Core.h"

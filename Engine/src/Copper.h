@@ -12,6 +12,7 @@
 //---------------------------
 #include "Copper/Core/Core.h"
 #include "Copper/Core/Application.h"
+#include "Copper/Core/Window.h"
 
 #include "Copper/Events/Event.h"
 #include "Copper/Events/ApplicationEvent.h"

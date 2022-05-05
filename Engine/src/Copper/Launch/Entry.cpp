@@ -28,7 +28,7 @@ int main() {
 	app.Run();
 	app.Shutdown();
 
-	std::cin.get();
+	//std::cin.get();
 	return 0;
 
 #elif CU_SYSTEM_LINUX

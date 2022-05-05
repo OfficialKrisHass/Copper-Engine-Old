@@ -7,6 +7,8 @@
 
 #include "Application.h"
 
+#include <GLFW/glfw3.h>
+
 namespace Copper {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -23,6 +25,9 @@ namespace Copper {
 		LogError("Variable 'No u' not defined");
 		LogTrace("");
 
+		window = std::unique_ptr<Window>(Window::Create());
+		window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
 		//Inform the User that the Application Initialization was successful
 		Log("Application Succesfully Initialized!");
 		LogTrace("----------------------------------------");
@@ -36,6 +41,22 @@ namespace Copper {
 		Log("Application Entered Game Loop");
 		LogTrace("-----------------------------------");
 
+		while (running) {
+
+			glClearColor(0.18f, 0.18f, 0.18f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
+
+			window->OnUpdate();
+
+		}
+
+	}
+
+	void Application::OnEvent(Event& e) {
+
+		Log(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose), e);
+
 	}
 
 	void Application::Shutdown() {
@@ -44,6 +65,15 @@ namespace Copper {
 		LogTrace("\n-------Application Shutdown-------");
 		Log("Application Shutdown requested");
 		LogTrace("----------------------------------");
+
+	}
+
+	bool Application::OnWindowClose(Event& e) {
+
+		Log(e);
+		running = false;
+
+		return false;
 
 	}
 
