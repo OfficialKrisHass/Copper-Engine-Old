@@ -12,7 +12,13 @@
 
 #pragma once
 
-#include "Utilities/Log.h"
+#include "Copper/Core/Core.h"
+#include "Copper/Debug/Log.h"
+
+#include "Copper/Events/Event.h"
+#include "Copper/Events/ApplicationEvent.h"
+#include "Copper/Events/KeyEvent.h"
+#include "Copper/Events/MouseEvent.h"
 
 namespace Copper {
 
@@ -24,7 +30,7 @@ namespace Copper {
 		void Shutdown();
 
 	private:
-		//
+		bool running = true;
 
 	};
 

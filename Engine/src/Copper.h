@@ -10,9 +10,15 @@
 //---------------------------
 //-----Engine Core Files-----
 //---------------------------
-#include "Core/Application.h"
+#include "Copper/Core/Core.h"
+#include "Copper/Core/Application.h"
+
+#include "Copper/Events/Event.h"
+#include "Copper/Events/ApplicationEvent.h"
+#include "Copper/Events/KeyEvent.h"
+#include "Copper/Events/MouseEvent.h"
 
 //--------------------------
 //-----Engine Utilities-----
 //--------------------------
-#include "Utilities/Log.h"
+#include "Copper/Debug/Log.h"

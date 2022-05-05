@@ -58,7 +58,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CU_ENGINE;CU_SYSTEM_WINDOWS;CU_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CU_ENGINE;CU_SYSTEM_WINDOWS;CU_USE_OPENGL;CU_USE_GLFW;CU_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -74,7 +74,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>CU_ENGINE;CU_SYSTEM_WINDOWS;CU_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CU_ENGINE;CU_SYSTEM_WINDOWS;CU_USE_OPENGL;CU_USE_GLFW;CU_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -92,13 +92,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Copper.h" />
-    <ClInclude Include="src\Core\Application.h" />
-    <ClInclude Include="src\Utilities\Log.h" />
+    <ClInclude Include="src\Copper\Core\Application.h" />
+    <ClInclude Include="src\Copper\Core\Core.h" />
+    <ClInclude Include="src\Copper\Debug\Log.h" />
+    <ClInclude Include="src\Copper\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Copper\Events\Event.h" />
+    <ClInclude Include="src\Copper\Events\KeyEvent.h" />
+    <ClInclude Include="src\Copper\Events\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Application.cpp" />
-    <ClCompile Include="src\Entry.cpp" />
-    <ClCompile Include="src\Utilities\Log.cpp" />
+    <ClCompile Include="src\Copper\Core\Application.cpp" />
+    <ClCompile Include="src\Copper\Debug\Log.cpp" />
+    <ClCompile Include="src\Copper\Launch\Entry.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

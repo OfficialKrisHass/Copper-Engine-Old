@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    <Filter Include="Copper">
+      <UniqueIdentifier>{2E9B40AC-1A3D-6B82-03F8-7ED6EF38F2D2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{010A8043-6D74-34BA-B6B2-E55F225C120F}</UniqueIdentifier>
+    <Filter Include="Copper\Core">
+      <UniqueIdentifier>{46EC9F52-B2A1-1848-3B96-121FA74A0F4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copper\Debug">
+      <UniqueIdentifier>{24D0A9A6-1033-394B-B9B8-7101A5FA04CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copper\Launch">
+      <UniqueIdentifier>{F8044F8E-64C5-CAC4-2D00-1442997F0FA1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Copper.h" />
-    <ClInclude Include="src\Core\Application.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="src\Copper\Core\Application.h">
+      <Filter>Copper\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utilities\Log.h">
-      <Filter>Utilities</Filter>
+    <ClInclude Include="src\Copper\Core\Core.h">
+      <Filter>Copper\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Copper\Debug\Log.h">
+      <Filter>Copper\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Events\Event.h" />
+    <ClInclude Include="src\Copper\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Copper\Events\MouseEvent.h" />
+    <ClInclude Include="src\Copper\Events\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Application.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="src\Copper\Core\Application.cpp">
+      <Filter>Copper\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entry.cpp" />
-    <ClCompile Include="src\Utilities\Log.cpp">
-      <Filter>Utilities</Filter>
+    <ClCompile Include="src\Copper\Debug\Log.cpp">
+      <Filter>Copper\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Copper\Launch\Entry.cpp">
+      <Filter>Copper\Launch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -34,7 +34,32 @@ project "Engine"
         staticruntime "On"
         systemversion "latest"
 
-        defines "CU_SYSTEM_WINDOWS"
+        defines {
+
+            "CU_SYSTEM_WINDOWS",
+            "CU_USE_OPENGL",
+            "CU_USE_GLFW"
+
+        }
+
+    filter "system:linux"
+
+        defines {
+
+            "CU_SYSTEM_LINUX",
+            "CU_USE_OPENGL",
+            "CU_USE_GLFW"
+
+        }
+
+    filter "system:macosx"
+
+        defines {
+
+            "CU_SYSTEM_MAC",
+            "CU_USE_METAL"
+
+        }
 
     filter "configurations:Debug"
         defines "CU_DEBUG"

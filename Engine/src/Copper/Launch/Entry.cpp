@@ -20,6 +20,8 @@
 //Function that Launches the Application, The Main main Function.
 int main() {
 
+#ifdef CU_SYSTEM_WINDOWS
+
 	Copper::Application app;
 
 	app.Initialize();
@@ -28,5 +30,21 @@ int main() {
 
 	std::cin.get();
 	return 0;
+
+#elif CU_SYSTEM_LINUX
+
+	std::cout << "Copper Engine Currently doesn't support Linux!";
+	std::cin.get();
+
+	return 0;
+
+#elif CU_SYSTEM_MAC
+
+	std::cout << "Copper Engine Currently doesn't support MacOS!";
+	std::cin.get();
+
+	return 0;
+
+#endif
 
 }

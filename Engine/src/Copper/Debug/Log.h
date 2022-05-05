@@ -35,7 +35,8 @@ namespace Copper {
 
 	#ifdef CU_ENGINE
 
-		#define Log(...)		Copper::Logger::GetLogger()->trace(__VA_ARGS__)
+		#define Log(...)		Copper::Logger::GetLogger()->info(__VA_ARGS__)
+		#define LogTrace(...)   std::cout << __VA_ARGS__ << std::endl
 		#define LogWarn(...)	Copper::Logger::GetLogger()->warn(__VA_ARGS__)
 		#define LogError(...)	Copper::Logger::GetLogger()->error(__VA_ARGS__)
 
@@ -46,6 +47,7 @@ namespace Copper {
 	#ifdef CU_ENGINE
 
 		#define Log(...)
+		#define LogTrace(...)
 		#define LogWarn(...)
 		#define LogError(...)
 
@@ -56,6 +58,7 @@ namespace Copper {
 	#ifdef CU_ENGINE
 
 		#define Log(...)
+		#define LogTrace(...)
 		#define LogWarn(...)
 		#define LogError(...)
 
