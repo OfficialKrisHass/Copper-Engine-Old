@@ -5,7 +5,12 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
+#include "cupch.h"
+
+#include <GLAD/glad.h>
 #include "WindowsWindow.h"
+
+#include "Copper/Core/Core.h"
 
 #include "Copper/Events/Event.h"
 #include "Copper/Events/ApplicationEvent.h"
@@ -13,6 +18,8 @@
 #include "Copper/Events/MouseEvent.h"
 
 namespace Copper {
+
+	static bool glfwInitialized;
 
 	//The Implementation of the Function we use to Create the Window
 	//TODO: Remove this function and create the specific Window Implementation
@@ -36,14 +43,26 @@ namespace Copper {
 		Log("Creating Window {0} (width: {1}, height: {2}", data.title, data.width, data.height);
 
 		//Initialize the GLFW Library and check if the Initialization was successfull
-		if (!glfwInit()) {
+		if (!glfwInitialized) {
 
-			LogError("Could not initialize GLFW!");
+			//Initialize GLFW and if not succesfull Log it
+			int success = glfwInit();
+			if (!success) { LogError("Could not Initialize GLFW! File: WindowsWindow.cpp"); }
+
+			//Set the GLFW Error Callback
+			glfwSetErrorCallback([](int error, const char* description) { LogError("GLFW Error ({0}): {1}", error, description); });
+
+			glfwInitialized = true;
 
 		}
 
-		//Create The GLFW Window Handle
+		//Create The GLFW Window Handle and set the context for GLAD
 		window = glfwCreateWindow((int)data.width, (int)data.height, data.title, NULL, NULL);
+		glfwMakeContextCurrent(window);
+
+		//Initialize Glad and store if it was succesfull and if not Display an error
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		if(!status) { LogError("Failed to Initialize GLAD! File: WindowsWndow.cpp"); }
 
 		//Here we set the User Pointer to point to where we store our WindowData
 		//Later when we are handling window events, we can simply get the WindowData
@@ -187,6 +206,7 @@ namespace Copper {
 
 	WindowsWindow::~WindowsWindow() {
 
+		Log("Window Closedddddd");
 		glfwDestroyWindow(window);
 
 	}

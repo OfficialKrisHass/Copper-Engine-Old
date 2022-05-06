@@ -11,8 +11,9 @@
 
 #pragma once
 
-#include <iostream>
+#include "cupch.h"
 
+#include "Copper/Core/Core.h"
 #include "Copper/Events/Event.h"
 
 namespace Copper {

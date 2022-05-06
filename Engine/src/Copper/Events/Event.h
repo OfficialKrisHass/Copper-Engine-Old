@@ -12,10 +12,7 @@
 
 #pragma once
 
-#include <iostream>
-#include <functional>
-#include <sstream>
-
+#include "cupch.h"
 #include "Copper/Core/Core.h"
 
 //NOTE: This Event system is basically a Copy of The Cherno's Event System from his Game Engine

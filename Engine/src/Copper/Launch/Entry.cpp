@@ -5,6 +5,7 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
+#include "cupch.h"
 #include "Copper.h"
 
 //main function to Test if the Project was compiled correctly

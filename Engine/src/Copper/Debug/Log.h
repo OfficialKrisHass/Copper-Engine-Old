@@ -11,8 +11,8 @@
 
 #pragma once
 
-#include <iostream>
-#include <memory>
+#include "cupch.h"
+#include "Copper/Core/Core.h"
 
 #ifdef CU_DEBUG
 
@@ -43,17 +43,6 @@ namespace Copper {
 	#endif
 
 #elif CU_RELEASE
-
-	#ifdef CU_ENGINE
-
-		#define Log(...)
-		#define LogTrace(...)
-		#define LogWarn(...)
-		#define LogError(...)
-
-	#endif
-
-#else
 
 	#ifdef CU_ENGINE
 

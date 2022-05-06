@@ -19,6 +19,7 @@ namespace Copper {
 
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height) : width(width), height(height) {} //Constructor to set the new Window Dimensions
+		WindowResizeEvent() = default;
 
 		//Functions to get the Dimensions respectively as floats
 		//NOTE: Maybe add a third function that would return vector2 with both dimensions

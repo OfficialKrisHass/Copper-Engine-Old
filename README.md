@@ -25,8 +25,8 @@ option), select the Debug option.
 
 4. Build and Launch
 You have multiple ways of doing this. At the Current time you can right click on the 'Engine' Project (on the Right side in the Solution Explorer window) and select the 'Build' Option. In this commit time this can
-take from 5 to 10 seconds to build, After this you can open the Root directory and open the new 'Build' Folder there you will have a Intermediate Folder (you can ignore this) and then a folder 'windows-x86_64-Debug'.
-Open the 'windows-x86_64-Debug' folder and then the 'Engine' Folder, there you will have a 'Engine.exe' file, open that file.
+take from 10 to 15 seconds to build, After this you can open the Root directory and open the new 'Build' Folder there you will have a Intermediate Folder (you can ignore this) and then a folder 
+'windows-x86_64-Debug'. Open the 'windows-x86_64-Debug' folder and then the 'Engine' Folder, there you will have a 'Engine.exe' file, open that file.
 
 ### Linux
 Copper Engine Currently doesn't support Linux

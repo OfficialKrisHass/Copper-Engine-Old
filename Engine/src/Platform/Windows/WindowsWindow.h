@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include "Copper/Core/Core.h"
-#include "Copper/Core/Window.h"
+#include "cupch.h"
 
+#include "Copper/Core/Window.h"
 #include "Copper/Debug/Log.h"
 
 #include <GLFW/glfw3.h>

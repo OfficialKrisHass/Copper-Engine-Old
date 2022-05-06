@@ -6,6 +6,7 @@ workspace "Copper-Engine"
 outputDir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Engine/lib/GLFW"
+include "Engine/lib/GLAD"
 
 project "Engine"
     location "Engine"
@@ -14,6 +15,9 @@ project "Engine"
 
     targetdir("Build/" .. outputDir .. "/%{prj.name}")
     objdir("Build/Intermediate/" .. outputDir .. "/%{prj.name}")
+
+    pchheader "cupch.h"
+    pchsource "{prj.name}/src/cupch.cpp"
 
     files {
 
@@ -26,13 +30,15 @@ project "Engine"
 
         "%{prj.name}/src",
         "%{prj.name}/lib/spdlog",
-        "%{prj.name}/lib/GLFW/include"
+        "%{prj.name}/lib/GLFW/include",
+        "%{prj.name}/lib/GLAD/include"
 
     }
 
     links {
 
         "GLFW",
+        "GLAD",
         "opengl32.lib"
 
     }
@@ -72,8 +78,13 @@ project "Engine"
         }
 
     filter "configurations:Debug"
-        defines "CU_DEBUG"
         symbols "On"
+
+        defines {
+
+            "CU_DEBUG"
+
+        }
 
     filter "configurations:Release"
         defines "CU_RELEASE"

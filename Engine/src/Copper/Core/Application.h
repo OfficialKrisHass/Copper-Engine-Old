@@ -22,6 +22,11 @@
 #include "Copper/Events/KeyEvent.h"
 #include "Copper/Events/MouseEvent.h"
 
+#include "Copper/Renderer/Renderer.h"
+#include "Copper/Renderer/Buffer.h"
+#include "Copper/Renderer/VertexArray.h"
+#include "Copper/Renderer/Shader.h"
+
 namespace Copper {
 
 	class Application {
@@ -40,7 +45,16 @@ namespace Copper {
 
 		EventDispatcher dispatcher;
 
+		Unique<Renderer> renderer;
+
+		Shared<VertexArray> vao;
+		Shared<VertexBuffer> vbo;
+		Shared<IndexBuffer> ibo;
+
+		Shared<Shader> shader;
+
 		bool OnWindowClose(Event& e);
+		bool OnWindowResize(Event& e);
 
 	};
 
