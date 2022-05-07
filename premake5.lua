@@ -17,7 +17,7 @@ project "Engine"
     objdir("Build/Intermediate/" .. outputDir .. "/%{prj.name}")
 
     pchheader "cupch.h"
-    pchsource "{prj.name}/src/cupch.cpp"
+    pchsource "Engine/src/cupch.cpp"
 
     files {
 

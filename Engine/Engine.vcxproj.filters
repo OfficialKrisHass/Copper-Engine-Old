@@ -19,6 +19,9 @@
     <Filter Include="Copper\Renderer">
       <UniqueIdentifier>{9452900A-00DE-FDCE-09EF-80C375F959CF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Copper\Utilities">
+      <UniqueIdentifier>{1911FB23-050A-1A76-2E3C-FFFA1A94F981}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -61,21 +64,31 @@
     <ClInclude Include="src\Copper\Renderer\Renderer.h">
       <Filter>Copper\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Copper\Renderer\Shader.h">
+      <Filter>Copper\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Renderer\VertexArray.h">
+      <Filter>Copper\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Copper\Utilities\FileUtils.h">
+      <Filter>Copper\Utilities</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\cupch.h" />
-    <ClInclude Include="src\Copper\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Copper\Renderer\Shader.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\Copper\Utilities\FileUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Copper\Core\Application.cpp">
@@ -93,24 +106,30 @@
     <ClCompile Include="src\Copper\Renderer\Renderer.cpp">
       <Filter>Copper\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Copper\Renderer\Shader.cpp">
+      <Filter>Copper\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Copper\Renderer\VertexArray.cpp">
+      <Filter>Copper\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Copper\Utilities\FileUtils.cpp">
+      <Filter>Copper\Utilities</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\cupch.cpp" />
-    <ClCompile Include="src\Copper\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Copper\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\Copper\Utilities\FileUtils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="assets\Shaders\vertexDefalt.glsl" />
-    <None Include="assets\Shaders\fragmentDefault.glsl" />
   </ItemGroup>
 </Project>
