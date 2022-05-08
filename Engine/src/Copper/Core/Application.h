@@ -27,24 +27,41 @@
 #include "Copper/Renderer/VertexArray.h"
 #include "Copper/Renderer/Shader.h"
 
+#include "Copper/Scene/Transform.h"
+#include "Copper/Scene/Mesh.h"
+#include "Copper/Scene/Camera.h"
+
 namespace Copper {
 
 	class Application {
 
 	public:
+		//The Initialization Functions
 		void Initialize();
 
+		//The Runtime Functions
 		void OnEvent(Event& e);
 		void Run();
 
+		//The Shutdown Functions
 		void Shutdown();
 
+		//Functions to Get Application Variables
+		inline static Application& Get() { return *instance; }
+		inline Window& GetWindow() { return *window; }
+		inline void* GetGLFWWindow() { return window->GetWindowPointer(); }
+
 	private:
+		static Application* instance;
+
+		//Running bool and Window Pointer
 		bool running = true;
 		std::unique_ptr<Window> window;
 
+		//Our Event Dispatcher
 		EventDispatcher dispatcher;
 
+		//Rendering Variables
 		Unique<Renderer> renderer;
 
 		Shared<VertexArray> vao;
@@ -53,6 +70,11 @@ namespace Copper {
 
 		Shared<Shader> shader;
 
+		//Model and Camera
+		Shared<Mesh> mesh;
+		Shared<Camera> cam;
+
+		//Event Functions
 		bool OnWindowClose(Event& e);
 		bool OnWindowResize(Event& e);
 

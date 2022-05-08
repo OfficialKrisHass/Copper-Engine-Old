@@ -22,7 +22,10 @@ project "Engine"
     files {
 
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        
+        "%{prj.name}/lib/stb/stb_image.h",
+        "%{prj.name}/lib/stb/stb_image.cpp",
 
     }
 
@@ -31,7 +34,8 @@ project "Engine"
         "%{prj.name}/src",
         "%{prj.name}/lib/spdlog",
         "%{prj.name}/lib/GLFW/include",
-        "%{prj.name}/lib/GLAD/include"
+        "%{prj.name}/lib/GLAD/include",
+        "%{prj.name}/lib/GLM/include"
 
     }
 
@@ -45,6 +49,12 @@ project "Engine"
 
     defines { "CU_ENGINE" }
 
+    postbuildcommands {
+
+        "{COPYDIR} assets ../Build/" .. outputDir .. "/%{prj.name}/assets"
+
+    }
+
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
@@ -54,7 +64,8 @@ project "Engine"
 
             "CU_SYSTEM_WINDOWS",
             "CU_USE_OPENGL",
-            "CU_USE_GLFW"
+            "CU_USE_GLFW",
+            "GLM_ENABLE_EXPERIMENTAL"
 
         }
 
@@ -86,6 +97,22 @@ project "Engine"
 
         }
 
+        linkoptions {
+
+            '/NODEFAULTLIB:"libcmt.lib"',
+            '/NODEFAULTLIB:"msvcrt.lib"',
+            '/NODEFAULTLIB:"msvcrtd.lib"'
+
+        }
+
     filter "configurations:Release"
         defines "CU_RELEASE"
         optimize "On"
+
+        linkoptions {
+
+            '/NODEFAULTLIB:"msvcrt.lib"',
+            '/NODEFAULTLIB:"libcmtd.lib"',
+            '/NODEFAULTLIB:"msvcrtd.lib"'
+
+        }

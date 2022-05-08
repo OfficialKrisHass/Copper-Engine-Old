@@ -20,7 +20,7 @@ namespace Copper {
 		virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) override;
 		inline virtual void SetShader(Shared<Shader> shader) override { this->shader = shader; }
 
-		virtual void Render(const Shared<VertexArray>& vao) override;
+		virtual void Render(const Shared<Mesh>& mesh, const Shared<Camera>& cam) override;
 
 	private:
 		Shared<Shader> shader;

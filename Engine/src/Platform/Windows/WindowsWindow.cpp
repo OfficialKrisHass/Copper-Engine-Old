@@ -56,6 +56,11 @@ namespace Copper {
 
 		}
 
+		//Set Window Hints for our Rendering Library
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 		//Create The GLFW Window Handle and set the context for GLAD
 		window = glfwCreateWindow((int)data.width, (int)data.height, data.title, NULL, NULL);
 		glfwMakeContextCurrent(window);
@@ -206,8 +211,10 @@ namespace Copper {
 
 	WindowsWindow::~WindowsWindow() {
 
-		Log("Window Closedddddd");
+		Log("Closing Window {0}", data.title);
+
 		glfwDestroyWindow(window);
+		glfwTerminate();
 
 	}
 

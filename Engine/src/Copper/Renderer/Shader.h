@@ -9,17 +9,22 @@
 
 #include "Copper/Core/Core.h"
 
+#include <GLM/glm.hpp>
+
 namespace Copper {
 
 	class Shader {
 
 	public:
 		static Shared<Shader> Create(const char* vertexPath, const char* fragmentPath);
+		virtual ~Shader() = default;
 
-		virtual void Bind() = 0;
-		virtual void Unbind() = 0;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		virtual unsigned int GetID() = 0;
+		virtual unsigned int GetID() const = 0;
+
+		virtual void SetMat4(glm::mat4 mat, const char* name) const = 0;
 
 	};
 

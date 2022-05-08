@@ -34,12 +34,18 @@ namespace Copper {
 
 	}
 
-	void OpenGLRenderer::Render(const Shared<VertexArray>& vao) {
+	void OpenGLRenderer::Render(const Shared<Mesh>& mesh, const Shared<Camera>& cam) {
 
+		mesh->BindVAO();
 		shader->Bind();
-		vao->Bind();
 
-		glDrawElements(GL_TRIANGLES, vao->GetIndexBuffer()->Count(), GL_UNSIGNED_INT, 0);
+		shader->SetMat4(mesh->transform->CreateModelMatrix(), "Model");
+		shader->SetMat4(cam->CreateViewMatrix(), "View");
+		shader->SetMat4(cam->CreateProjectionMatrix(), "Projection");
+
+		cam->Move();
+
+		glDrawElements(GL_TRIANGLES, mesh->GetVertexCount(), GL_UNSIGNED_INT, 0);
 
 	}
 

@@ -35,6 +35,13 @@ namespace Copper {
 
 	}
 
+	OpenGLShader::~OpenGLShader() {
+
+		Log("Deleting Shader {0}", ID);
+		glDeleteProgram(ID);
+
+	}
+
 	void OpenGLShader::CreateShader(const char* path, int type, unsigned int* id) {
 
 		if (type != GL_VERTEX_SHADER && type != GL_FRAGMENT_SHADER) { LogError("Unkown Shader Type!"); return; }
@@ -84,15 +91,21 @@ namespace Copper {
 
 	}
 
-	void OpenGLShader::Bind() {
+	void OpenGLShader::Bind() const {
 
 		glUseProgram(ID);
 
 	}
 
-	void OpenGLShader::Unbind() {
+	void OpenGLShader::Unbind() const {
 
 		glUseProgram(0);
+
+	}
+
+	void OpenGLShader::SetMat4(glm::mat4 mat, const char* name) const {
+
+		glUniformMatrix4fv(glGetUniformLocation(ID, name), 1, GL_FALSE, glm::value_ptr(mat));
 
 	}
 

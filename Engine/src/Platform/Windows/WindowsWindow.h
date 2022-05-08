@@ -24,11 +24,14 @@ namespace Copper {
 
 		inline unsigned int GetWidth() const override { return data.width; }
 		inline unsigned int GetHeight() const override { return data.height; }
+		inline float GetAspectRatio() const override { return static_cast<float>(data.width) / data.height; }
 
 		void SetVSync(bool enabled) override;
 		inline void SetEventCallback(const EventCallbackFn& callback) override { data.eventCallback = callback; }
 		inline bool IsVSync() const override { return data.VSync; }
 		inline bool ShouldClose() const override { return false; }
+
+		inline void* GetWindowPointer() const override { return window; }
 
 		void OnUpdate() override;
 

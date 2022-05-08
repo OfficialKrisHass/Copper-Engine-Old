@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+*.js
+*.html
+
 # User-specific files
 *.rsuser
 *.suo
@@ -12,6 +15,8 @@
 
 # Visual Studio Specific Files
 *.sln
+*.vcxproj
+*.filters
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

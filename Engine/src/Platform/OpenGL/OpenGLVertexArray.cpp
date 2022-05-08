@@ -18,6 +18,14 @@ namespace Copper {
 
 	}
 
+	OpenGLVertexArray::~OpenGLVertexArray() {
+
+		Log("Deleting Vertex Array {0}", ID);
+
+		glDeleteVertexArrays(1, &ID);
+
+	}
+
 	void OpenGLVertexArray::Bind() {
 
 		glBindVertexArray(ID);
@@ -34,6 +42,7 @@ namespace Copper {
 
 		Bind();
 
+		//Position
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
 		glEnableVertexAttribArray(0);
 

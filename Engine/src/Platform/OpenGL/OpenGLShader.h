@@ -17,11 +17,14 @@ namespace Copper {
 
 	public:
 		OpenGLShader(const char* vertexPath, const char* fragmentPath);
+		virtual ~OpenGLShader();
 
-		virtual void Bind() override;
-		virtual void Unbind() override;
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
 
-		inline virtual unsigned int GetID() override { return ID; }
+		inline virtual unsigned int GetID() const override { return ID; }
+
+		virtual void SetMat4(glm::mat4 mat, const char* name) const override;
 
 	private:
 		unsigned int ID;

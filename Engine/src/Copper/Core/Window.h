@@ -38,6 +38,8 @@ namespace Copper {
 		//A shorter version that we can use for setting the callback for Window Events
 		using EventCallbackFn = std::function<void(Event&)>;
 
+		virtual ~Window() = default;
+
 		//A Static Create function that for now will be implemented in the WindowsWindow file and always
 		//return a Windows Window
 		static Window* Create(const WindowProps& props = WindowProps());
@@ -46,12 +48,16 @@ namespace Copper {
 		//Getting the Window Data
 		virtual unsigned int GetWidth() const = 0;
 		virtual unsigned int GetHeight() const = 0;
+		virtual float GetAspectRatio() const = 0;
 
 		//Setting and getting information about the current state of the Window
 		virtual void SetVSync(bool enabled) = 0;
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual bool IsVSync() const = 0;
 		virtual bool ShouldClose() const = 0;
+
+		//Function that returns a pointer to the Window Handle. In GLFW this would be GLFWwindow pointer
+		virtual void* GetWindowPointer() const = 0;
 
 		//Update Function will be called every frame
 		virtual void OnUpdate() = 0;

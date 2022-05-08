@@ -20,6 +20,14 @@ namespace Copper {
 		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
 
 	}
+
+	OpenGLVertexBuffer::~OpenGLVertexBuffer() {
+
+		Log("Deleting Vertex Buffer {0}", ID);
+		glDeleteBuffers(1, &ID);
+
+	}
+
 	void OpenGLVertexBuffer::Bind() {
 
 		glBindBuffer(GL_ARRAY_BUFFER, ID);
@@ -40,6 +48,13 @@ namespace Copper {
 		
 		Bind();
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+
+	}
+
+	OpenGLIndexBuffer::~OpenGLIndexBuffer() {
+
+		Log("Deleting Index Buffer {0}", ID);
+		glDeleteBuffers(1, &ID);
 
 	}
 

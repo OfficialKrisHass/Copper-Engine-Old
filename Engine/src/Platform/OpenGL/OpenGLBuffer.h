@@ -16,6 +16,7 @@ namespace Copper {
 
 	public:
 		OpenGLVertexBuffer(std::vector<float> vertices);
+		virtual ~OpenGLVertexBuffer();
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
@@ -29,6 +30,7 @@ namespace Copper {
 
 	public:
 		OpenGLIndexBuffer(std::vector<uint32_t> indices);
+		virtual ~OpenGLIndexBuffer();
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
