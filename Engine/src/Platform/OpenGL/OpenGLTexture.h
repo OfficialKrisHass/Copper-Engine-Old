@@ -5,15 +5,26 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
-//A header file for any File Utilities we might need
-
 #pragma once
 
-#include <string>
+#include "Copper/Core/Core.h"
+
+#include "Copper/Renderer/Texture.h"
 
 namespace Copper {
 
-	//Read File function
-	std::string ReadFile(const char* path);
+	class OpenGLTexture : public Texture {
+
+	public:
+		OpenGLTexture(const char* path);
+		virtual ~OpenGLTexture();
+
+		virtual void Bind() override;
+		virtual void Unbind() override;
+
+	private:
+		unsigned int ID;
+
+	};
 
 }

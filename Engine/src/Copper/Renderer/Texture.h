@@ -5,15 +5,21 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
-//A header file for any File Utilities we might need
-
 #pragma once
 
-#include <string>
+#include "Copper/Core/Core.h"
 
 namespace Copper {
 
-	//Read File function
-	std::string ReadFile(const char* path);
+	class Texture {
+
+	public:
+		static Shared<Texture> Create(const char* path);
+		virtual ~Texture() = default;
+
+		virtual void Bind() = 0;
+		virtual void Unbind() = 0;
+
+	};
 
 }

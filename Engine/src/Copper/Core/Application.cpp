@@ -21,20 +21,41 @@ namespace Copper {
 	//Vertex Data
 	std::vector<float> vertices = {
 
-		-0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
+		//Front Face
+		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f, //0
+		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 0.0f, //1
+		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 1.0f, //2
+		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 1.0f, //3
 
-		 0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f,  0.5f,
+		//Back Face
+		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, //4
+		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f, //5
+		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	1.0f, 1.0f, //6
+		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f, //7
 
-		-0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f, -0.5f,
-		-0.5f,  0.5f, -0.5f,
+		//Left Face
+		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, //8
+		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 0.0f, //9
+		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 1.0f, //10
+		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f, //11
+
+		//Right Face
+		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 0.0f, //12
+		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 0.0f, //13
+		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, //14
+		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f, //15
+
+		//Up Face
+		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, //16
+		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 0.0f, //17
+		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, //18
+		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f, //19
+
+		//Down Face
+		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, //20
+		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 0.0f, //21
+		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, //22
+		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f, //23
 
 	};
 
@@ -50,8 +71,19 @@ namespace Copper {
 		8, 9, 10,
 		10, 11, 8,
 
+		12, 13, 14,
+		14, 15, 12,
+
+		16, 17, 18,
+		18, 19, 16,
+
+		20, 21, 22,
+		22, 23, 20
+
 	};
 	
+	int size = 10;
+
 	//The Main Initialize Functions
 	void Application::Initialize() {
 
@@ -74,7 +106,7 @@ namespace Copper {
 		window = std::unique_ptr<Window>(Window::Create());
 		window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
-		//renderer->Initialize();
+		renderer->Initialize();
 
 		//Create and Set our Rendering Shader
 		shader = Shader::Create("assets/Shaders/vertexDefault.glsl", "assets/Shaders/fragmentDefault.glsl");
@@ -87,18 +119,34 @@ namespace Copper {
 		vbo = VertexBuffer::Create(vertices);
 		ibo = IndexBuffer::Create(indices);
 
+		BufferLayout layout = {
+
+			{"position", DataType::Float3},
+			{"color", DataType::Float3},
+			{"uvs", DataType::Float2}
+
+		};
+
+		vbo->SetLayout(layout);
+
 		vao->AddVertexBuffer(vbo);
 		vao->AddIndexBuffer(ibo);
 
 		vbo->Unbind();
 		vao->Unbind();
 
+		texture = Texture::Create("assets/Textures/pfp.png");
+
 		//Create a Model
 		Shared<Transform> transform = std::shared_ptr<Transform>(new Transform(glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
 		Shared<Transform> camTransform = std::shared_ptr<Transform>(new Transform(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
 
-		mesh = std::shared_ptr<Mesh>(new Mesh(transform, vao));
+		mesh = std::shared_ptr<Mesh>(new Mesh(transform, vao, texture));
 		cam = std::shared_ptr<Camera>(new Camera(camTransform));
+
+		shader->Bind();
+		shader->SetInt(0, "tex0");
+		shader->Unbind();
 
 		//Inform the User that the Application Initialization was successful
 		Log("Application Succesfully Initialized!");

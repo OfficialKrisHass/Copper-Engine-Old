@@ -26,6 +26,7 @@
 #include "Copper/Renderer/Buffer.h"
 #include "Copper/Renderer/VertexArray.h"
 #include "Copper/Renderer/Shader.h"
+#include "Copper/Renderer/Texture.h"
 
 #include "Copper/Scene/Transform.h"
 #include "Copper/Scene/Mesh.h"
@@ -69,6 +70,8 @@ namespace Copper {
 		Shared<IndexBuffer> ibo;
 
 		Shared<Shader> shader;
+
+		Shared<Texture> texture;
 
 		//Model and Camera
 		Shared<Mesh> mesh;

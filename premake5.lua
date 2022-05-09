@@ -24,8 +24,8 @@ project "Engine"
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
         
-        "%{prj.name}/lib/stb/stb_image.h",
-        "%{prj.name}/lib/stb/stb_image.cpp",
+        "%{prj.name}/lib/stb/stb/stb_image.h",
+        "%{prj.name}/lib/stb/stb/stb_image.cpp",
 
     }
 
@@ -33,9 +33,11 @@ project "Engine"
 
         "%{prj.name}/src",
         "%{prj.name}/lib/spdlog",
+        
         "%{prj.name}/lib/GLFW/include",
         "%{prj.name}/lib/GLAD/include",
-        "%{prj.name}/lib/GLM/include"
+        "%{prj.name}/lib/GLM/include",
+        "%{prj.name}/lib/stb"
 
     }
 

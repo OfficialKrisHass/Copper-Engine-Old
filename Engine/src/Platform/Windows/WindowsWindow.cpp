@@ -5,6 +5,8 @@
 //The Copper Engine project can not be copied and /or distributed without the express
 //permission of Chris Husky <chrishuskywolf@gmail.com>.
 
+//This is the Source file of the Windows implementation of the Window System.
+
 #include "cupch.h"
 
 #include <GLAD/glad.h>
@@ -209,6 +211,7 @@ namespace Copper {
 
 	}
 
+	//Destructor that terminates the GLFW library and destroys the Window
 	WindowsWindow::~WindowsWindow() {
 
 		Log("Closing Window {0}", data.title);
@@ -218,6 +221,7 @@ namespace Copper {
 
 	}
 
+	//Function that tells our window if we are using VSync
 	void WindowsWindow::SetVSync(bool enabled) {
 
 		if (enabled) {
@@ -233,8 +237,10 @@ namespace Copper {
 
 	}
 
+	//Update function that updates the Window
 	void WindowsWindow::OnUpdate() {
 
+		//Polls the Window Events and Swaps the Buffers.
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 
