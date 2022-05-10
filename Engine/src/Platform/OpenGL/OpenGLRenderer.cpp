@@ -71,7 +71,7 @@ namespace Copper {
 		shader->Bind();
 
 		//Move the Camera
-		cam->Move();
+		//cam->Move();
 
 		//Sets our Model View and Projection Matrices
 		shader->SetMat4(mesh->transform->CreateModelMatrix(), "Model");

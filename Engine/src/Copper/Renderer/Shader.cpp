@@ -25,13 +25,13 @@ namespace Copper {
 		//Switch case with what API we are using
 		switch (Renderer::GetAPI()) {
 
-		case Renderer::RendererAPI::None: LogError("RendererAPI::None is not supported! File Shader.cpp"); return nullptr; //No Rendering API
+		case Renderer::RendererAPI::None: EngineLogError("RendererAPI::None is not supported! File Shader.cpp"); return nullptr; //No Rendering API
 		case Renderer::RendererAPI::OpenGL: return CreateShared<OpenGLShader>(vertexPath, fragmentPath); //OpenGL
 
 		}
 
 		//This code runs only if the API is unkown
-		LogError("Unkown Rendering API! File Shader.cpp");
+		EngineLogError("Unkown Rendering API! File Shader.cpp");
 		return nullptr;
 
 	}

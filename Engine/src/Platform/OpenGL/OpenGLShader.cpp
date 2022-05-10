@@ -47,7 +47,7 @@ namespace Copper {
 	//Shader Destructor that deletes the Shader Program
 	OpenGLShader::~OpenGLShader() {
 
-		Log("Deleting Shader {0}", ID);
+		EngineLog("Deleting Shader {0}", ID);
 		glDeleteProgram(ID);
 
 	}
@@ -56,7 +56,7 @@ namespace Copper {
 	void OpenGLShader::CreateShader(const char* path, int type, unsigned int* id) {
 
 		//Check if the Shader Type is correct, if not return
-		if (type != GL_VERTEX_SHADER && type != GL_FRAGMENT_SHADER) { LogError("Unkown Shader Type!"); return; }
+		if (type != GL_VERTEX_SHADER && type != GL_FRAGMENT_SHADER) { EngineLogError("Unkown Shader Type!"); return; }
 
 		//Set the original id of the separate Shader to new Shader of the given type
 		*id = glCreateShader(type);
@@ -92,8 +92,8 @@ namespace Copper {
 			//Switch for the Shader Type
 			switch (type) {
 
-			case GL_VERTEX_SHADER: LogError("Vertex Shader Compiling Error:\n\n {0}", infoLog); break; //Vertex Shader: Log the Error Message
-			case GL_FRAGMENT_SHADER: LogError("Fragment Shader Compiling Error:\n\n {0}", infoLog); //Fragment Shader: Log the Error Message
+			case GL_VERTEX_SHADER: EngineLogError("Vertex Shader Compiling Error:\n\n {0}", infoLog); break; //Vertex Shader: Log the Error Message
+			case GL_FRAGMENT_SHADER: EngineLogError("Fragment Shader Compiling Error:\n\n {0}", infoLog); //Fragment Shader: Log the Error Message
 
 			}
 
@@ -113,7 +113,7 @@ namespace Copper {
 			glGetProgramInfoLog(id, 512, NULL, infoLog);
 			
 			//Log the Error with the InfoLog
-			LogError("Shader Linking Error:\n\n {0}", infoLog);
+			EngineLogError("Shader Linking Error:\n\n {0}", infoLog);
 
 		}
 

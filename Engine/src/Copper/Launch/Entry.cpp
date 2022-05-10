@@ -8,44 +8,17 @@
 #include "cupch.h"
 #include "Copper.h"
 
-//main function to Test if the Project was compiled correctly
-/*int main() {
-
-	std::cout << "Hello, World!" << std::endl;
-	std::cin.get();
-
-	return 0;
-
-}*/
-
-//Function that Launches the Application, The Main main Function.
 int main() {
 
-#ifdef CU_SYSTEM_WINDOWS
+	Copper::Application* app = new Copper::Application();
 
-	Copper::Application app;
-
-	app.Initialize();
-	app.Run();
-	app.Shutdown();
+	app->Initialize();
+	app->Run();
+	app->Shutdown();
 
 	//std::cin.get();
+
+	delete app;
 	return 0;
-
-#elif CU_SYSTEM_LINUX
-
-	std::cout << "Copper Engine Currently doesn't support Linux!";
-	std::cin.get();
-
-	return 0;
-
-#elif CU_SYSTEM_MAC
-
-	std::cout << "Copper Engine Currently doesn't support MacOS!";
-	std::cin.get();
-
-	return 0;
-
-#endif
 
 }

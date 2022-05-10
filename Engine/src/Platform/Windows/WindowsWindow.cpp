@@ -42,17 +42,17 @@ namespace Copper {
 		data.width = props.width;
 		data.height = props.height;
 
-		Log("Creating Window {0} (width: {1}, height: {2}", data.title, data.width, data.height);
+		EngineLog("Creating Window {0} (width: {1}, height: {2}", data.title, data.width, data.height);
 
 		//Initialize the GLFW Library and check if the Initialization was successfull
 		if (!glfwInitialized) {
 
 			//Initialize GLFW and if not succesfull Log it
 			int success = glfwInit();
-			if (!success) { LogError("Could not Initialize GLFW! File: WindowsWindow.cpp"); }
+			if (!success) { EngineLogError("Could not Initialize GLFW! File: WindowsWindow.cpp"); }
 
 			//Set the GLFW Error Callback
-			glfwSetErrorCallback([](int error, const char* description) { LogError("GLFW Error ({0}): {1}", error, description); });
+			glfwSetErrorCallback([](int error, const char* description) { EngineLogError("GLFW Error ({0}): {1}", error, description); });
 
 			glfwInitialized = true;
 
@@ -69,7 +69,7 @@ namespace Copper {
 
 		//Initialize Glad and store if it was succesfull and if not Display an error
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		if(!status) { LogError("Failed to Initialize GLAD! File: WindowsWndow.cpp"); }
+		if(!status) { EngineLogError("Failed to Initialize GLAD! File: WindowsWndow.cpp"); }
 
 		//Here we set the User Pointer to point to where we store our WindowData
 		//Later when we are handling window events, we can simply get the WindowData
@@ -151,6 +151,15 @@ namespace Copper {
 
 		});
 
+		glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int keycode) {
+
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(keycode);
+			data.eventCallback(event);
+
+		});
+
 		//Mouse Event, very similar to Key Event just a bit easier since we can only do 2 things
 		//with a mouse,
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int scancode) {
@@ -214,7 +223,7 @@ namespace Copper {
 	//Destructor that terminates the GLFW library and destroys the Window
 	WindowsWindow::~WindowsWindow() {
 
-		Log("Closing Window {0}", data.title);
+		EngineLog("Closing Window {0}", data.title);
 
 		glfwDestroyWindow(window);
 		glfwTerminate();

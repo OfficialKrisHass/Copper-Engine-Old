@@ -9,11 +9,9 @@
 #include "Application.h"
 
 #include <GLFW/glfw3.h>
+#include <ImGui/imgui.h>
 
 namespace Copper {
-
-//A Define to Bind Functions to an event
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	//Create a null instance of this application
 	Application* Application::instance = nullptr;
@@ -22,40 +20,40 @@ namespace Copper {
 	std::vector<float> vertices = {
 
 		//Front Face
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f, //0
-		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 0.0f, //1
+		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, //0
+		 0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 0.0f, //1
 		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 1.0f, //2
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 1.0f, //3
+		-0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f, //3
 
 		//Back Face
-		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, //4
-		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f, //5
+		 0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 0.0f, //4
+		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	1.0f, 0.0f, //5
 		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	1.0f, 1.0f, //6
-		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f, //7
+		 0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f, //7
 
 		//Left Face
-		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, //8
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 0.0f, //9
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 1.0f, //10
-		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f, //11
+		-0.5f, -0.5f, -0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 0.0f, //8
+		-0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 0.0f, //9
+		-0.5f,  0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, //10
+		-0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 1.0f, //11
 
 		//Right Face
-		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	0.0f, 0.0f, //12
-		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 0.0f, //13
-		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, //14
-		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f, //15
+		 0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 0.0f, //12
+		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 0.0f, //13
+		 0.5f,  0.5f, -0.5f,	1.0f, 0.0f, 0.0f,	1.0f, 1.0f, //14
+		 0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f, //15
 
 		//Up Face
-		-0.5f,  0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, //16
-		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 1.0f,	1.0f, 0.0f, //17
+		-0.5f,  0.5f,  0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 0.0f, //16
+		 0.5f,  0.5f,  0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f, //17
 		 0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, //18
-		-0.5f,  0.5f, -0.5f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f, //19
+		-0.5f,  0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	0.0f, 1.0f, //19
 
 		//Down Face
-		-0.5f, -0.5f, -0.5f,	1.0f, 1.0f, 1.0f,	0.0f, 0.0f, //20
+		-0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, //20
 		 0.5f, -0.5f, -0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 0.0f, //21
-		 0.5f, -0.5f,  0.5f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, //22
-		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 0.0f,	0.0f, 1.0f, //23
+		 0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	1.0f, 1.0f, //22
+		-0.5f, -0.5f,  0.5f,	1.0f, 0.0f, 1.0f,	0.0f, 1.0f, //23
 
 	};
 
@@ -87,8 +85,8 @@ namespace Copper {
 	//The Main Initialize Functions
 	void Application::Initialize() {
 
-		//Here we initialize parts of the engine that need to be initializéd
-		LogTrace("-------Application Initialization-------");
+		//Here we initialize parts of the engine that need to be initializï¿½d
+		EngineLogTrace("-------Application Initialization-------");
 
 		//Set the instance to this current instance
 		instance = this;
@@ -98,13 +96,16 @@ namespace Copper {
 		Logger::Initialize();
 
 		//Test if our Logging system functions correctly
-		Log("you are too cute!");
-		LogError("Variable 'No u' not defined");
-		LogTrace("");
+		EngineLog("you are too cute!");
+		EngineLogError("Variable 'No u' not defined");
+		EngineLogTrace("");
 
 		//Create our new Window and set the Event Callback to the OnEvent Function
 		window = std::unique_ptr<Window>(Window::Create());
-		window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		imGuiLayer = new ImGuiLayer();
+		PushOverlay(imGuiLayer);
 
 		renderer->Initialize();
 
@@ -149,17 +150,26 @@ namespace Copper {
 		shader->Unbind();
 
 		//Inform the User that the Application Initialization was successful
-		Log("Application Succesfully Initialized!");
-		LogTrace("----------------------------------------");
+		EngineLog("Application Succesfully Initialized!");
+		EngineLogTrace("----------------------------------------");
+
+#ifdef CU_EDITOR
+
+		//Editor
+		editor = CreateUnique<Editor::Editor>();
+
+		editor->OnStart();
+
+#endif
 
 	}
 
 	void Application::Run() {
 
 		//This is the main Application Loop here we handle events, rendering input, everything that needs to be handled during runtime
-		LogTrace("\n-------Application Game Loop-------");
-		Log("Application Entered Game Loop");
-		LogTrace("-----------------------------------");
+		EngineLogTrace("\n-------Application Game Loop-------");
+		EngineLog("Application Entered Game Loop");
+		EngineLogTrace("-----------------------------------");
 
 		while (running) {
 
@@ -168,6 +178,29 @@ namespace Copper {
 
 			//Render the VAO
 			renderer->Render(mesh, cam);
+
+			for (Layer* layer : layerStack) {
+
+				layer->OnUpdate();
+
+			}
+
+			imGuiLayer->Begin();
+
+			for (Layer* layer : layerStack) {
+
+				layer->OnImGuiRender();
+
+			}
+
+			imGuiLayer->End();
+
+#ifdef CU_EDITOR
+
+			//Update Editor
+			editor->OnUpdate();
+
+#endif
 
 			//Update Window
 			window->OnUpdate();
@@ -180,8 +213,22 @@ namespace Copper {
 	void Application::OnEvent(Event& e) {
 
 		//Dispatch the WindowClose and Window Events
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose), e);
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize), e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose), e);
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize), e);
+
+		for (auto it = layerStack.end(); it != layerStack.begin(); ) {
+
+			(*--it)->OnEvent(e);
+
+			if (e.handled) { break; }
+
+		}
+
+		if (!e.handled) {
+
+			editor->OnEvent(e);
+
+		}
 
 	}
 
@@ -189,9 +236,9 @@ namespace Copper {
 	void Application::Shutdown() {
 
 		//Here we Shutdown and clear everything left behind the application before successfully exiting the Application
-		LogTrace("\n-------Application Shutdown-------");
-		Log("Application Shutdown requested");
-		LogTrace("");
+		EngineLogTrace("\n-------Application Shutdown-------");
+		EngineLog("Application Shutdown requested");
+		EngineLogTrace("");
 
 		vao.reset();
 		vbo.reset();
@@ -200,7 +247,13 @@ namespace Copper {
 
 		window.reset();
 
-		LogTrace("----------------------------------");
+#ifdef CU_EDITOR
+
+		editor->OnExit();
+
+#endif
+
+		EngineLogTrace("----------------------------------");
 
 	}
 
@@ -209,6 +262,8 @@ namespace Copper {
 
 		//Stop the Application
 		running = false;
+
+		EngineLog(e);
 
 		return true;
 

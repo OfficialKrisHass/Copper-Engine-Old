@@ -7,6 +7,7 @@ outputDir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Engine/lib/GLFW"
 include "Engine/lib/GLAD"
+include "Engine/lib/ImGui/ImGui"
 
 project "Engine"
     location "Engine"
@@ -37,6 +38,7 @@ project "Engine"
         "%{prj.name}/lib/GLFW/include",
         "%{prj.name}/lib/GLAD/include",
         "%{prj.name}/lib/GLM/include",
+        "%{prj.name}/lib/ImGui",
         "%{prj.name}/lib/stb"
 
     }
@@ -45,11 +47,17 @@ project "Engine"
 
         "GLFW",
         "GLAD",
+        "ImGui",
         "opengl32.lib"
 
     }
 
-    defines { "CU_ENGINE" }
+    defines { 
+
+        "CU_ENGINE",
+        "CU_EDITOR"
+
+    }
 
     postbuildcommands {
 
@@ -65,39 +73,15 @@ project "Engine"
         defines {
 
             "CU_SYSTEM_WINDOWS",
-            "CU_USE_OPENGL",
-            "CU_USE_GLFW",
             "GLM_ENABLE_EXPERIMENTAL"
 
         }
 
-    filter "system:linux"
-
-        defines {
-
-            "CU_SYSTEM_LINUX",
-            "CU_USE_OPENGL",
-            "CU_USE_GLFW"
-
-        }
-
-    filter "system:macosx"
-
-        defines {
-
-            "CU_SYSTEM_MAC",
-            "CU_USE_METAL"
-
-        }
-
     filter "configurations:Debug"
+        defines "CU_DEBUG"
         symbols "On"
 
-        defines {
-
-            "CU_DEBUG"
-
-        }
+        buildoptions "/MTd"
 
         linkoptions {
 
@@ -110,6 +94,8 @@ project "Engine"
     filter "configurations:Release"
         defines "CU_RELEASE"
         optimize "On"
+
+        buildoptions "/MT"
 
         linkoptions {
 

@@ -35,10 +35,15 @@ namespace Copper {
 
 	#ifdef CU_ENGINE
 
-		#define Log(...)		Copper::Logger::GetLogger()->info(__VA_ARGS__)
-		#define LogTrace(...)   std::cout << __VA_ARGS__ << std::endl
-		#define LogWarn(...)	Copper::Logger::GetLogger()->warn(__VA_ARGS__)
-		#define LogError(...)	Copper::Logger::GetLogger()->error(__VA_ARGS__)
+		#define EngineLog(...)			Copper::Logger::GetEngineLogger()->info(__VA_ARGS__)
+		#define EngineLogWarn(...)		Copper::Logger::GetEngineLogger()->warn(__VA_ARGS__)
+		#define EngineLogError(...)		Copper::Logger::GetEngineLogger()->error(__VA_ARGS__)
+		#define EngineLogTrace(...)		std::cout << __VA_ARGS__ << std::endl
+
+		#define EditorLog(...)			Copper::Logger::GetEditorLogger()->info(__VA_ARGS__)
+		#define EditorLogWarn(...)		Copper::Logger::GetEditorLogger()->warn(__VA_ARGS__)
+		#define EditorLogError(...)		Copper::Logger::GetEditorLogger()->error(__VA_ARGS__)
+		#define EditorLogTrace(...)		std::cout << __VA_ARGS__ << std::endl
 
 	#endif
 
@@ -46,10 +51,16 @@ namespace Copper {
 
 	#ifdef CU_ENGINE
 
-		#define Log(...)
-		#define LogTrace(...)
-		#define LogWarn(...)
-		#define LogError(...)
+		#define EngineLog(...)
+		#define EngineLogTrace(...)
+		#define EngineLogWarn(...)
+		#define EngineLogError(...)
+
+		#define EditorLog(...)
+		#define EditorLogWarn(...)
+		#define EditorLogError(...)
+		#define EditorLogTrace(...)
+
 
 	#endif
 
@@ -60,10 +71,12 @@ namespace Copper {
 	public:
 		static void Initialize();
 
-		inline static std::shared_ptr<spdlog::logger>& GetLogger() { return consoleLogger; }
+		inline static std::shared_ptr<spdlog::logger>& GetEngineLogger() { return engineLogger; }
+		inline static std::shared_ptr<spdlog::logger>& GetEditorLogger() { return editorLogger; }
 
 	private:
-		static std::shared_ptr<spdlog::logger> consoleLogger;
+		static std::shared_ptr<spdlog::logger> engineLogger;
+		static std::shared_ptr<spdlog::logger> editorLogger;
 
 	};
 

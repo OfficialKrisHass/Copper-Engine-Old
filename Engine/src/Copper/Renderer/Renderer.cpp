@@ -25,13 +25,13 @@ namespace Copper {
 		//Switch case for the Rendering API we are using
 		switch (api) {
 
-		case RendererAPI::None: LogError("RendererAPI::None is not supported! Renderer.cpp"); return nullptr; //No Rendering API
+		case RendererAPI::None: EngineLogError("RendererAPI::None is not supported! Renderer.cpp"); return nullptr; //No Rendering API
 		case RendererAPI::OpenGL: return CreateUnique<OpenGLRenderer>(); //OpenGL
 
 		}
 
 		//This code will only run if the client is using unkown rendering API
-		LogError("Unkown Rendering API! File Renderer.cpp");
+		EngineLogError("Unkown Rendering API! File Renderer.cpp");
 		return nullptr;
 	}
 

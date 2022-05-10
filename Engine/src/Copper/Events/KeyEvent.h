@@ -84,4 +84,24 @@ namespace Copper {
 
 	};
 
+	class KeyTypedEvent : public KeyEvent {
+
+	public:
+		KeyTypedEvent(int keyCode) : KeyEvent(keyCode) {} //Constructor to just set the KeyCode and repeatCount
+
+		//KeyPressed ToString implementation. ToString is used when we want to type the information from the event, in this case
+		//the name of the Event, the keycode and Repeat count
+		std::string ToString() const override {
+
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << keyCode;
+
+			return ss.str();
+
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped) //Implementation of the Functions required by every Event
+
+	};
+
 }

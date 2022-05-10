@@ -33,7 +33,7 @@ namespace Copper {
 
 		}
 
-		LogError("Unkown DataType!");
+		EngineLogError("Unkown DataType!");
 		return 0;
 
 	}
@@ -48,7 +48,7 @@ namespace Copper {
 	//Constructor to clean up the memory
 	OpenGLVertexArray::~OpenGLVertexArray() {
 
-		Log("Deleting Vertex Array {0}", ID);
+		EngineLog("Deleting Vertex Array {0}", ID);
 
 		glDeleteVertexArrays(1, &ID);
 

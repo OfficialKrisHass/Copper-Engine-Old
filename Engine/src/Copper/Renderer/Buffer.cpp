@@ -23,13 +23,13 @@ namespace Copper {
 		//Switch case based on what Rendering API we are using
 		switch (Renderer::GetAPI()) {
 
-		case Renderer::RendererAPI::None: LogError("RenderAPI::None is not supported! File Buffer.cpp"); return nullptr; //No Rendering API
+		case Renderer::RendererAPI::None: EngineLogError("RenderAPI::None is not supported! File Buffer.cpp"); return nullptr; //No Rendering API
 		case Renderer::RendererAPI::OpenGL: return CreateShared<OpenGLVertexBuffer>(vertices); //OpenGL
 
 		}
 		
 		//this code runs only if the Rendering API is unkown
-		LogError("Unkown Rendering API! File Buffer.cpp");
+		EngineLogError("Unkown Rendering API! File Buffer.cpp");
 		return nullptr;
 
 	}
@@ -40,13 +40,13 @@ namespace Copper {
 		//Switch case based on what Rendering API we are using
 		switch (Renderer::GetAPI()) {
 
-		case Renderer::RendererAPI::None: LogError("RenderAPI::None is not supported! File Buffer.cpp"); return nullptr; //No Rendering API
+		case Renderer::RendererAPI::None: EngineLogError("RenderAPI::None is not supported! File Buffer.cpp"); return nullptr; //No Rendering API
 		case Renderer::RendererAPI::OpenGL: return CreateShared<OpenGLIndexBuffer>(indices); //OpenGL
 
 		}
 		
 		//this code runs only if the Rendering API is unkown
-		LogError("Unkown Rendering API! File Buffer.cpp");
+		EngineLogError("Unkown Rendering API! File Buffer.cpp");
 		return nullptr;
 
 	}

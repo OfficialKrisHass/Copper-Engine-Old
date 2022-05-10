@@ -42,7 +42,7 @@ namespace Copper {
 
 		}
 
-		LogError("Unkown Data Type!");
+		EngineLogError("Unkown Data Type!");
 		return 0;
 
 	}
@@ -58,7 +58,7 @@ namespace Copper {
 		const char* name;
 		DataType type;
 		uint32_t size;
-		uint32_t offset;
+		size_t offset;
 
 		//Function to get the dimensions/how many numbers are in this Attribute
 		uint32_t GetDimensions() const {
@@ -80,7 +80,7 @@ namespace Copper {
 
 			}
 
-			LogError("Unkown Data Type!");
+			EngineLogError("Unkown Data Type!");
 			return 0;
 
 		}

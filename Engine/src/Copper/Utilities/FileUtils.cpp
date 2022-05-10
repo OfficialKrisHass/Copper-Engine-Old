@@ -44,7 +44,7 @@ namespace Copper {
 		catch (std::ifstream::failure e) {
 
 			//Error with reading the file
-			LogError("File not successfully read! path: {0}", path);
+			EngineLogError("File not successfully read! path: {0}", path);
 
 		}
 

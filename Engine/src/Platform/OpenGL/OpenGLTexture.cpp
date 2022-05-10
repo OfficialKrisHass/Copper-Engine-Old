@@ -34,7 +34,7 @@ namespace Copper {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 
-		} else { LogError("Could Not Load Image: {0}", path); }
+		} else { EngineLogError("Could Not Load Image: {0}", path); }
 
 		stbi_image_free(data);
 

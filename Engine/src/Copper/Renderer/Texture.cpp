@@ -18,12 +18,12 @@ namespace Copper {
 
 		switch (Renderer::GetAPI()) {
 
-		case Renderer::RendererAPI::None: LogError("RendererAPI::None is not supported! File Texture.cpp"); return nullptr;
+		case Renderer::RendererAPI::None: EngineLogError("RendererAPI::None is not supported! File Texture.cpp"); return nullptr;
 		case Renderer::RendererAPI::OpenGL: return CreateShared<OpenGLTexture>(path);
 
 		}
 
-		LogError("Unkown Rendeing API! File Texture.cpp");
+		EngineLogError("Unkown Rendeing API! File Texture.cpp");
 		return nullptr;
 
 	}

@@ -39,7 +39,7 @@ namespace Copper {
 	//Destructor to clean the Memory when the Application termiantes
 	OpenGLVertexBuffer::~OpenGLVertexBuffer() {
 
-		Log("Deleting Vertex Buffer {0}", ID);
+		EngineLog("Deleting Vertex Buffer {0}", ID);
 		glDeleteBuffers(1, &ID);
 
 	}
@@ -80,7 +80,7 @@ namespace Copper {
 	//Destructor to clean up the Memory
 	OpenGLIndexBuffer::~OpenGLIndexBuffer() {
 
-		Log("Deleting Index Buffer {0}", ID);
+		EngineLog("Deleting Index Buffer {0}", ID);
 		glDeleteBuffers(1, &ID);
 
 	}

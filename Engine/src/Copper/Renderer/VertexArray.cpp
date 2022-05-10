@@ -26,13 +26,13 @@ namespace Copper {
 		//Switch statement with the Rendering API we are using
 		switch(Renderer::GetAPI()) {
 
-		case Renderer::RendererAPI::None: LogError("RendererAPI::None is not supported! File VertexArray.cpp"); return nullptr; //No Rendering API
+		case Renderer::RendererAPI::None: EngineLogError("RendererAPI::None is not supported! File VertexArray.cpp"); return nullptr; //No Rendering API
 		case Renderer::RendererAPI::OpenGL: return CreateShared<OpenGLVertexArray>(); //OpenGL
 
 		}
 
 		//This code will only run if the Rendering API is unkown
-		LogError("Unkown Rendering API! File VertexArray.cpp");
+		EngineLogError("Unkown Rendering API! File VertexArray.cpp");
 		return nullptr;
 
 	}

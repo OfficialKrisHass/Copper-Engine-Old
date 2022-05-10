@@ -14,6 +14,8 @@
 
 #include "Copper/Core/Core.h"
 #include "Copper/Core/Window.h"
+#include "Copper/Core/Layer.h"
+#include "Copper/Core/LayerStack.h"
 
 #include "Copper/Debug/Log.h"
 
@@ -28,9 +30,13 @@
 #include "Copper/Renderer/Shader.h"
 #include "Copper/Renderer/Texture.h"
 
+#include "Copper/ImGui/ImGuiLayer.h"
+
 #include "Copper/Scene/Transform.h"
 #include "Copper/Scene/Mesh.h"
 #include "Copper/Scene/Camera.h"
+
+#include "Editor/Core/Editor.h"
 
 namespace Copper {
 
@@ -43,6 +49,9 @@ namespace Copper {
 		//The Runtime Functions
 		void OnEvent(Event& e);
 		void Run();
+
+		void PushLayer(Layer* layer) { layerStack.PushLayer(layer); }
+		void PushOverlay(Layer* overlay) { layerStack.PushOverlay(overlay); }
 
 		//The Shutdown Functions
 		void Shutdown();
@@ -62,6 +71,10 @@ namespace Copper {
 		//Our Event Dispatcher
 		EventDispatcher dispatcher;
 
+		//Layers
+		LayerStack layerStack;
+		ImGuiLayer* imGuiLayer;
+
 		//Rendering Variables
 		Unique<Renderer> renderer;
 
@@ -77,10 +90,19 @@ namespace Copper {
 		Shared<Mesh> mesh;
 		Shared<Camera> cam;
 
+		//Editor
+#ifdef CU_EDITOR
+
+		Unique<Editor::Editor> editor;
+
+#endif
+
 		//Event Functions
 		bool OnWindowClose(Event& e);
 		bool OnWindowResize(Event& e);
 
 	};
+
+	Application* CreateApplication();
 
 }
