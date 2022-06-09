@@ -1,49 +1,46 @@
 #pragma once
 
+#include <iostream>
+
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace Copper {
 
-	namespace Logger {
+	#define LoggerInit() Logger::Initialize()
 
-		#define Initialize() Logger::Init()
+	#ifdef CU_DEBUG
+		
+		#define Log(...)		Logger::GetLogger()->info(__VA_ARGS__)
+		#define LogWarn(...)	Logger::GetLogger()->warn(__VA_ARGS__)
+		#define LogTrace(...)	Logger::GetLogger()->trace(__VA_ARGS__)
+		#define LogError(...)	Logger::GetLogger()->error(__VA_ARGS__)
 
-		#ifdef CU_DEBUG
-			
-			#define Log(...)		Logger::Info(__VA_ARGS__)
-			#define LogWarn(...)	Logger::Warn(__VA_ARGS__)
-			#define LogTrace(...)	Logger::Trace(__VA_ARGS__)
-			#define LogError(...)	Logger::Error(__VA_ARGS__)
-			
-		#else
+		#define Empty()			std::cout << "" << std::endl
+		#define Header(...)		Logger::GetLogger()->trace(__VA_ARGS__); std::cout << "" << std::endl
+		
+	#else
 
-			#define Log(...)
-			#define LogWarn(...)
-			#define LogTrace(...)
-			#define LogError(...)
+		#define Log(...)
+		#define LogWarn(...)
+		#define LogTrace(...)
+		#define LogError(...)
 
-		#endif
+		#define Empty()
+		#define Header(...)
 
-		class Logger {
+	#endif
 
-		public:
-			static void Init();
+	class Logger {
 
-			inline static void Info(const char* msg) { logger->info(msg); }
-			inline static void Warn(const char* msg) { logger->warn(msg); }
-			inline static void Trace(const char* msg) { logger->trace(msg); }
-			inline static void Error(const char* msg) { logger->error(msg); }
+	public:
+		static void Initialize();
 
-			template<typename... Args> inline static void Info(const char* fmt, Args&... args) { logger->info(fmt, args...); }
-			template<typename... Args> inline static void Warn(const char* fmt, Args&... args) { logger->warn(fmt, args...); }
-			template<typename... Args> inline static void Trace(const char* fmt, Args&... args) { logger->trace(fmt, args...); }
-			template<typename... Args> inline static void Error(const char* fmt, Args&... args) { logger->erorr(fmt, args...); }
+		inline static std::shared_ptr<spdlog::logger> GetLogger() { return logger; }
 
-		private:
-			static std::shared_ptr<spdlog::logger> logger;
+	private:
+		static std::shared_ptr<spdlog::logger> logger;
 
-		};
-
-	}
+	};
 
 }

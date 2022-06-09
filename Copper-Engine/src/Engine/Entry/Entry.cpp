@@ -1,8 +1,6 @@
-#include <iostream>
+#include "cupch.h"
 
 #include "Engine/Entry/EngineLoop.h"
-
-#include "Engine/Debug/Log.h"
 
 Copper::EngineLoop engineLoop;
 
@@ -12,7 +10,7 @@ int main() {
 	engineLoop.Run();
 	engineLoop.Shutdown();
 
-	std::cin.get();
+	//std::cin.get();
 	return 0;
 
 }

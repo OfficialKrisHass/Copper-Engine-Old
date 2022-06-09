@@ -2,6 +2,9 @@ workspace "Copper-Engine"
     architecture "x64"
     configurations {"Debug", "Release"}
 
+include "Copper-Engine/lib/GLFW"
+include "Copper-Engine/lib/GLAD"
+
 project "Copper-Engine"
     location "Copper-Engine"
     kind "ConsoleApp"
@@ -9,6 +12,9 @@ project "Copper-Engine"
 
     targetdir("Build/%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}")
     objdir("Build/Intermediate/%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}")
+
+    pchheader "cupch.h"
+    pchsource "Copper-Engine/src/cupch.cpp"
 
     files {
 
@@ -21,7 +27,23 @@ project "Copper-Engine"
 
         "%{prj.name}/src",
 
-        "%{prj.name}/lib/spdlog"
+        "%{prj.name}/lib/spdlog",
+        "%{prj.name}/lib/GLFW/include",
+        "%{prj.name}/lib/GLAD/include",
+        "%{prj.name}/lib/GLM/include"
+
+    }
+
+    links {
+
+        "GLFW",
+        "GLAD"
+
+    }
+
+    postbuildcommands {
+
+        "{COPYDIR} assets ../Build/%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}/assets"
 
     }
 
