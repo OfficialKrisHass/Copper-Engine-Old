@@ -4,6 +4,7 @@ workspace "Copper-Engine"
 
 include "Copper-Engine/lib/GLFW"
 include "Copper-Engine/lib/GLAD"
+include "Copper-Engine/lib/ImGui/ImGui"
 
 project "Copper-Engine"
     location "Copper-Engine"
@@ -30,14 +31,16 @@ project "Copper-Engine"
         "%{prj.name}/lib/spdlog",
         "%{prj.name}/lib/GLFW/include",
         "%{prj.name}/lib/GLAD/include",
-        "%{prj.name}/lib/GLM/include"
+        "%{prj.name}/lib/GLM/include",
+        "%{prj.name}/lib/ImGui"
 
     }
 
     links {
 
         "GLFW",
-        "GLAD"
+        "GLAD",
+        "ImGui"
 
     }
 

@@ -5,8 +5,9 @@
 #include "Engine/Renderer/VertexArray.h"
 #include "Engine/Renderer/Shader.h"
 
-#include "Engine/Scene/Transform.h"
-#include "Engine/Scene/Camera.h"
+#include "Engine/Scene/Components/Transform.h"
+#include "Engine/Scene/Components/Mesh.h"
+#include "Engine/Scene/Components/Camera.h"
 
 namespace Copper {
 
@@ -21,7 +22,7 @@ namespace Copper {
 
 		static void SetShader(Shared<Shader> shader);
 
-		static void Render(Shared<VertexArray> vao, Transform transform, Camera camera);
+		static void Render(Mesh* mesh, Camera* camera);
 
 	private:
 		static Unique<RendererAPI> api;

@@ -17,7 +17,7 @@ namespace Copper {
 
 		inline virtual void SetShader(Shared<Shader> shader) override { this->shader = shader; }
 
-		virtual void Render(Shared<VertexArray> vao, Transform transform, Camera camera) override;
+		virtual void Render(Mesh* mesh, Camera* camera) override;
 
 	private:
 		Shared<Shader> shader;

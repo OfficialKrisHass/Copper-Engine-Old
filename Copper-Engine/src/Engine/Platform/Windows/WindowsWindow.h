@@ -17,6 +17,8 @@ namespace Copper {
 		inline virtual uint32_t Height() override { return data.height; }
 		inline virtual float AspectRatio() override { return static_cast<float>(data.width) / data.height; }
 
+		inline virtual void* GetWindowPtr() override { return window; }
+
 		inline void SetEventCallback(EventCallback callback) override { data.eventCallback = callback; }
 
 		virtual void Update() override;

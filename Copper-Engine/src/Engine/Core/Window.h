@@ -26,6 +26,8 @@ namespace Copper {
 		virtual uint32_t Height() = 0;
 		virtual float AspectRatio() = 0;
 
+		virtual void* GetWindowPtr() = 0;
+
 		virtual void SetEventCallback(EventCallback callback) = 0;
 
 		virtual void Update() = 0;

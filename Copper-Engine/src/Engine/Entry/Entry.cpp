@@ -1,14 +1,11 @@
 #include "cupch.h"
-
-#include "Engine/Entry/EngineLoop.h"
-
-Copper::EngineLoop engineLoop;
+#include "Engine/Core/Engine.h"
 
 int main() {
 
-	engineLoop.Init();
-	engineLoop.Run();
-	engineLoop.Shutdown();
+	Copper::InitializeEngine();
+	Copper::RunEngine();
+	Copper::ExitEngine();
 
 	//std::cin.get();
 	return 0;

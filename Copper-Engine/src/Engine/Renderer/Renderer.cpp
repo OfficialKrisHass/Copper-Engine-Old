@@ -32,9 +32,9 @@ namespace Copper {
 
 	}
 
-	void Renderer::Render(Shared<VertexArray> vao, Transform transform, Camera camera) {
+	void Renderer::Render(Mesh* mesh, Camera* camera) {
 
-		api->Render(vao, transform, camera);
+		api->Render(mesh, camera);
 
 	}
 

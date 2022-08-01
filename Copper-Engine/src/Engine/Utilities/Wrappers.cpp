@@ -8,8 +8,10 @@
 
 namespace Copper {
 
-	glm::vec2 Vector2::ToGLM() { return glm::vec2(x, y); }
-	glm::vec3 Vector3::ToGLM() { return glm::vec3(x, y, z); }
-	glm::vec4 Vector4::ToGLM() { return glm::vec4(x, y, z, w); }
+	//glm::vec2 Vector2::ToGLM() { return glm::vec2(x, y); }
+	//glm::vec3 Vector3::ToGLM() { return glm::vec3(x, y, z); }
+	//glm::vec4 Vector4::ToGLM() { return glm::vec4(x, y, z, w); }
+
+	//glm::uvec2 UVector2::ToGlm() { return glm::uvec2(x, y); }
 
 }
